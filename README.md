@@ -1,4 +1,4 @@
-<a href="https://mohammed-saif-portfolio.vercel.app"><img src="./cards/hero.svg" width="100%" alt="Mohammed Saif. Builds Mac apps, AI tools and full-stack platforms. Open to internships." /></a>
+<a href="https://mohammedsaif.dev"><img src="./cards/hero.svg" width="100%" alt="Mohammed Saif. Builds Mac apps, AI tools and full-stack platforms. Open to internships." /></a>
 
 <img src="./cards/graph.svg" width="100%" alt="GitHub contributions in the last year" />
 
@@ -7,7 +7,7 @@
 <p>
 <a href="https://github.com/MohammedSaif29/NotchPal"><img src="./cards/tile-mac.svg" width="32.5%" alt="Mac apps: 8 widgets, search and AI living in the MacBook notch" /></a>
 <a href="https://github.com/MohammedSaif29/ai-interview-coach"><img src="./cards/tile-ai.svg" width="32.5%" alt="AI tools: 83 tests behind an AI mock-interview coach" /></a>
-<a href="https://mohammed-saif-portfolio.vercel.app/#work"><img src="./cards/tile-web.svg" width="32.5%" alt="Full-stack: 4 platforms built end to end" /></a>
+<a href="https://mohammedsaif.dev/#work"><img src="./cards/tile-web.svg" width="32.5%" alt="Full-stack: 4 platforms built end to end" /></a>
 </p>
 
 <p>
@@ -18,6 +18,6 @@
 </p>
 
 <p align="center">
-<a href="https://mohammed-saif-portfolio.vercel.app">Portfolio</a> ·
+<a href="https://mohammedsaif.dev">Portfolio</a> ·
 <a href="https://github.com/MohammedSaif29?tab=repositories">All repositories</a>
 </p>
