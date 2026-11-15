@@ -28,10 +28,12 @@ LOGIN = "MohammedSaif29"
 STATIC = os.environ.get("STATIC") == "1"
 TODAY = dt.date.fromisoformat(os.environ["TODAY"]) if "TODAY" in os.environ else dt.date.today()
 
-# Portfolio palette (mohammed-saif-portfolio.vercel.app)
-INK, INK2, INK3 = "#0D0D10", "#131317", "#1B1B21"
-TEXT, SOFT, DIM = "#F5F5F7", "#BDBDC7", "#90909C"
-LIVE, BLUE, VIOLET, PINK, ORANGE = "#5BE3A0", "#3D7BFF", "#8F5CFF", "#E84FD0", "#FF8A3D"
+# Portfolio palette, Midnight Ember (mohammedsaif.dev)
+INK, INK2, INK3 = "#1B2632", "#223041", "#2C3B4D"
+TEXT, SOFT, DIM = "#EEE9DF", "#C9C1B1", "#8F969C"
+LIVE = "#5BE3A0"
+C1, C2, C3, C4 = "#FFB162", "#C9C1B1", "#E0835A", "#A35139"   # one accent per project, as on the site
+G1, G2, G3, G4 = "#FFB162", "#F59A5C", "#E0835A", "#C96A48"   # the warm gradient
 SPRING, OUT = "cubic-bezier(.34,1.42,.64,1)", "cubic-bezier(.2,.8,.2,1)"
 
 
@@ -208,17 +210,17 @@ COUNT_CSS = f"""
 
 def hero():
     w, h = 1200, 470
-    gdefs, bg, border = frame(w, h, [(1120, 20, 470, VIOLET, .30), (1180, 300, 300, PINK, .14), (40, 470, 380, BLUE, .18)])
+    gdefs, bg, border = frame(w, h, [(1120, 20, 470, G1, .22), (1180, 300, 300, G4, .14), (40, 470, 380, G3, .12)])
     defs = gdefs + f"""
 <linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="120" x2="620" y2="340" gradientTransform="translate(-900 0)">
   <stop offset="0" stop-color="{TEXT}"/><stop offset=".40" stop-color="{TEXT}"/>
-  <stop offset=".5" stop-color="#9DB8FF"/><stop offset=".60" stop-color="{TEXT}"/><stop offset="1" stop-color="{TEXT}"/>
+  <stop offset=".5" stop-color="#FFD9B0"/><stop offset=".60" stop-color="{TEXT}"/><stop offset="1" stop-color="{TEXT}"/>
   <animateTransform attributeName="gradientTransform" type="translate" values="-900 0;900 0;900 0" keyTimes="0;.32;1" dur="7s" begin="2.2s" repeatCount="indefinite"/>
 </linearGradient>
 <linearGradient id="flare" gradientUnits="userSpaceOnUse" x1="664" y1="0" x2="1130" y2="0">
-  <stop offset="0" stop-color="{BLUE}"/><stop offset=".42" stop-color="{VIOLET}"/><stop offset=".74" stop-color="{PINK}"/><stop offset="1" stop-color="{ORANGE}"/>
+  <stop offset="0" stop-color="{G1}"/><stop offset=".42" stop-color="{G2}"/><stop offset=".74" stop-color="{G3}"/><stop offset="1" stop-color="{G4}"/>
 </linearGradient>
-<linearGradient id="flareS" x1="0" x2="1"><stop offset="0" stop-color="{BLUE}"/><stop offset="1" stop-color="{PINK}"/></linearGradient>"""
+<linearGradient id="flareS" x1="0" x2="1"><stop offset="0" stop-color="{G1}"/><stop offset="1" stop-color="{G4}"/></linearGradient>"""
     words = ["Mac apps.", "AI tools.", "full-stack platforms."]
     word_svg = "".join(
         f'<text x="664" y="252" class="it word w{i}" font-size="54" fill="url(#flare)" style="animation-delay:{1.3 + i * 3:.1f}s">{esc(wd)}</text>'
@@ -252,12 +254,12 @@ def hero():
 
 def graph(s, days):
     w, h = 1200, 300
-    gdefs, bg, border = frame(w, h, [(1200, 0, 380, BLUE, .16)])
+    gdefs, bg, border = frame(w, h, [(1200, 0, 380, G1, .12)])
     step, cell = 20, 16
     last_sunday = TODAY - dt.timedelta(days=(TODAY.weekday() + 1) % 7)
     first = last_sunday - dt.timedelta(weeks=52)
     x0, y0 = 72, 118
-    levels = ["#1B1E2A", "#1E3170", "#2C55C8", BLUE, "#A9C2FF"]
+    levels = ["#243244", "#5B4537", "#A35139", "#E0835A", "#FFB162"]
 
     def level(c):
         return 0 if c == 0 else 1 if c <= 2 else 2 if c <= 5 else 3 if c <= 9 else 4
@@ -293,9 +295,9 @@ def graph(s, days):
 
 def activity(s):
     w, h = 1200, 380
-    gdefs, bg, border = frame(w, h, [(0, 0, 360, VIOLET, .14)])
-    defs = gdefs + (f'<linearGradient id="best" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="{BLUE}"/>'
-                    f'<stop offset="1" stop-color="{VIOLET}"/></linearGradient>')
+    gdefs, bg, border = frame(w, h, [(0, 0, 360, G3, .12)])
+    defs = gdefs + (f'<linearGradient id="best" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="{G4}"/>'
+                    f'<stop offset="1" stop-color="{G1}"/></linearGradient>')
     months = s["months"]
     peak = max(v for _, v in months) or 1
     best = max(range(12), key=lambda i: (months[i][1], i))
@@ -306,7 +308,7 @@ def activity(s):
         bw = 30
         x = left + i * slot + (slot - bw) / 2
         bh = max(4, v / peak * tall)
-        fill = "url(#best)" if i == best and v else ("#2A2F45" if v else INK3)
+        fill = "url(#best)" if i == best and v else ("#3A4D63" if v else INK3)
         bars.append(f'<rect x="{x:.1f}" y="{base - bh:.1f}" width="{bw}" height="{bh:.1f}" rx="6" fill="{fill}" class="grow" '
                     f'{delay(.3 + i * .06)}><title>{v} in {d:%B %Y}</title></rect>')
         bars.append(f'<text x="{x + bw / 2:.1f}" y="{base + 26}" class="bg fade" font-size="12" fill="{SOFT if i == best else DIM}" '
@@ -316,10 +318,10 @@ def activity(s):
                         f'text-anchor="middle">{v}</text>')
     count, day = s["busiest"]
     tiles = [
-        ("CONTRIBUTIONS", s["total"], "in the last 12 months", BLUE),
-        ("ACTIVE DAYS", s["active"], "days with commits", VIOLET),
-        ("LONGEST STREAK", s["longest"], "days in a row", PINK),
-        ("BUSIEST DAY", count, f"on {day:%b} {day.day}, {day.year}", ORANGE),
+        ("CONTRIBUTIONS", s["total"], "in the last 12 months", C1),
+        ("ACTIVE DAYS", s["active"], "days with commits", C2),
+        ("LONGEST STREAK", s["longest"], "days in a row", C3),
+        ("BUSIEST DAY", count, f"on {day:%b} {day.day}, {day.year}", C4),
     ]
     st = []
     for i, (label, val, sub, col) in enumerate(tiles):
@@ -417,21 +419,21 @@ def main():
         "hero.svg": hero(),
         "graph.svg": graph(s, days),
         "activity.svg": activity(s),
-        "tile-mac.svg": tile("01", "MAC APPS", 8, "", ["widgets, search and AI", "living in the MacBook notch"], "NotchPal", " · Swift, SwiftUI", BLUE, .1),
-        "tile-ai.svg": tile("02", "AI TOOLS", 83, "", ["tests behind an AI", "mock-interview coach"], "AI Interview Coach", " · FastAPI", VIOLET, .25),
-        "tile-web.svg": tile("03", "FULL-STACK", 4, "", ["platforms built end to end,", "from database to UI"], "EduVault, AidConnect", " + 2", PINK, .4),
+        "tile-mac.svg": tile("01", "MAC APPS", 8, "", ["widgets, search and AI", "living in the MacBook notch"], "NotchPal", " · Swift, SwiftUI", C1, .1),
+        "tile-ai.svg": tile("02", "AI TOOLS", 88, "", ["tests behind an AI", "mock-interview coach"], "AI Interview Coach", " · FastAPI", C2, .25),
+        "tile-web.svg": tile("03", "FULL-STACK", 4, "", ["platforms built end to end,", "from database to UI"], "EduVault, AidConnect", " + 2", C3, .4),
         "repo-notchpal.svg": repo_card("NotchPal", "SWIFT · MACOS APP",
             "A Dynamic Island for every Mac: search and Apple Intelligence in the notch, Live Activities, Siri, music and games.",
-            ["Swift", "SwiftUI", "Apple Intelligence", "AppKit"], BLUE, .1),
+            ["Swift", "SwiftUI", "Apple Intelligence", "AppKit"], C1, .1),
         "repo-interview.svg": repo_card("AI Interview Coach", "PYTHON · AI",
             "Voice mock interviews with Whisper transcription, LLM scoring, speech-delivery analysis and ATS resume checks.",
-            ["FastAPI", "React", "Whisper", "pytest"], VIOLET, .2),
+            ["FastAPI", "React", "Whisper", "pytest"], C2, .2),
         "repo-eduvault.svg": repo_card("EduVault", "JAVA · FULL-STACK",
             "Resource-sharing platform with role-based dashboards, JWT and Google OAuth, approvals and recommendations.",
-            ["Spring Boot", "React", "OAuth2", "MySQL"], PINK, .3),
+            ["Spring Boot", "React", "OAuth2", "MySQL"], C3, .3),
         "repo-aidconnect.svg": repo_card("AidConnect", "NODE.JS · FULL-STACK",
             "Donation platform linking people in need with donors, with admin-verified requests and donation tracking.",
-            ["Node.js", "Express", "SQLite", "JWT"], ORANGE, .4),
+            ["Node.js", "Express", "SQLite", "JWT"], C4, .4),
     }
     for name, content in cards.items():
         (CARDS / name).write_text(content)

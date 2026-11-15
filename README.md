@@ -6,7 +6,7 @@
 
 <p>
 <a href="https://github.com/MohammedSaif29/NotchPal"><img src="./cards/tile-mac.svg" width="32.5%" alt="Mac apps: 8 widgets, search and AI living in the MacBook notch" /></a>
-<a href="https://github.com/MohammedSaif29/ai-interview-coach"><img src="./cards/tile-ai.svg" width="32.5%" alt="AI tools: 83 tests behind an AI mock-interview coach" /></a>
+<a href="https://github.com/MohammedSaif29/ai-interview-coach"><img src="./cards/tile-ai.svg" width="32.5%" alt="AI tools: 88 tests behind an AI mock-interview coach" /></a>
 <a href="https://mohammedsaif.dev/#work"><img src="./cards/tile-web.svg" width="32.5%" alt="Full-stack: 4 platforms built end to end" /></a>
 </p>
 
